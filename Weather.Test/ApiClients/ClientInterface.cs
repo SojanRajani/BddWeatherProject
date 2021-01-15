@@ -1,15 +1,9 @@
 ﻿using Bdd.Project.Test.Models;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using System.Web;
 using OpenWeatherApi;
 using System.Configuration;
-using CurrencyConverterClient;
-using System.Collections.Generic;
-using System.Linq;
+using CurrencyConverter;
+using System;
 
 namespace Bdd.Project.Test.ApiClients
 {
@@ -35,15 +29,58 @@ namespace Bdd.Project.Test.ApiClients
             return weather;
         }
 
-        public CurrencyConversionResponse GetCurrencyCoverted(string baseCurrency, IEnumerable<string> Symbols)
+        public CurrencyConversionResponse GetCurrencyCoverted(string baseCurrency, string toCurrency)
         {
-            CurrencyConverterClientClass client = new CurrencyConverterClientClass(new HttpClient());
-            var response = client.GetLatestAsync(baseCurrency, Symbols, CurrencyAppId).Result;
-            currency = new CurrencyConversionResponse()
+            CurrencyConverterClient client = new CurrencyConverterClient(new HttpClient());
+
+            var baseCR = MapEnum(baseCurrency);
+
+            var toCR = MapEnum(toCurrency);
+
+            var response = client.LatestAsync(baseCR.ToString()).Result;
+            currency = new CurrencyConversionResponse();
+
+            currency.result = toCR switch
             {
-                result = response.Rates1[Symbols.FirstOrDefault()]
+                CurrencyEnum.CAD => response.Rates.CAD,
+                CurrencyEnum.HKD => response.Rates.HKD,
+                CurrencyEnum.ISK => response.Rates.ISK,
+                CurrencyEnum.PHP => response.Rates.PHP,
+                CurrencyEnum.DKK => response.Rates.DKK,
+                CurrencyEnum.HUF => response.Rates.HUF,
+                CurrencyEnum.CZK => response.Rates.CZK,
+                CurrencyEnum.GBP => response.Rates.GBP,
+                CurrencyEnum.RON => response.Rates.RON,
+                CurrencyEnum.SEK => response.Rates.SEK,
+                CurrencyEnum.IDR => response.Rates.IDR,
+                CurrencyEnum.INR => response.Rates.INR,
+                CurrencyEnum.BRL => response.Rates.BRL,
+                CurrencyEnum.RUB => response.Rates.RUB,
+                CurrencyEnum.HRK => response.Rates.HRK,
+                CurrencyEnum.JPY => response.Rates.JPY,
+                CurrencyEnum.THB => response.Rates.THB,
+                CurrencyEnum.CHF => response.Rates.CHF,
+                CurrencyEnum.EUR => response.Rates.EUR,
+                CurrencyEnum.MYR => response.Rates.MYR,
+                CurrencyEnum.BGN => response.Rates.BGN,
+                CurrencyEnum.TRY => response.Rates.TRY,
+                CurrencyEnum.CNY => response.Rates.CNY,
+                CurrencyEnum.NOK => response.Rates.NOK,
+                CurrencyEnum.NZD => response.Rates.NZD,
+                CurrencyEnum.ZAR => response.Rates.ZAR,
+                CurrencyEnum.USD => response.Rates.USD,
+                CurrencyEnum.MXN => response.Rates.MXN,
+                CurrencyEnum.SGD => response.Rates.SGD,
+                CurrencyEnum.AUD => response.Rates.AUD,
+                CurrencyEnum.ILS => response.Rates.ILS,
+                CurrencyEnum.KRW => response.Rates.KRW,
+                CurrencyEnum.PLN => response.Rates.PLN,
+                _ => response.Rates.USD,
             };
+
             return currency;
         }
+
+        static readonly Func<string, CurrencyEnum> MapEnum = (string currency) => (CurrencyEnum)Enum.Parse(typeof(CurrencyEnum), currency);
     }
 }

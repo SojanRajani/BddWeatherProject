@@ -11,18 +11,18 @@
 #pragma warning disable 1591 // Disable "CS1591 Missing XML comment for publicly visible type or member ..."
 #pragma warning disable 8073 // Disable "CS8073 The result of the expression is always 'false' since a value of type 'T' is never equal to 'null' of type 'T?'"
 
-namespace CurrencyConverterClient
+namespace CurrencyConverter
 {
     using System = global::System;
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class CurrencyConverterClientClass 
+    public partial class CurrencyConverterClient 
     {
-        private string _baseUrl = "http://api.fixer.io";
+        private string _baseUrl = "https://api.exchangeratesapi.io";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public CurrencyConverterClientClass(System.Net.Http.HttpClient httpClient)
+        public CurrencyConverterClient(System.Net.Http.HttpClient httpClient)
         {
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings);
@@ -48,23 +48,17 @@ namespace CurrencyConverterClient
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
     
-        /// <summary>Get the latest foreign exchange reference rates</summary>
-        /// <param name="@base">The base currency</param>
-        /// <param name="symbols">The exchange rates symbols returned</param>
-        /// <returns>The foreign exchange reference rates</returns>
+        /// <returns>Auto generated using Swagger Inspector</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Rates> GetLatestAsync(string @base, System.Collections.Generic.IEnumerable<string> symbols, string AppId)
+        public System.Threading.Tasks.Task<Response> LatestAsync(string @base)
         {
-            return GetLatestAsync(@base, symbols, AppId, System.Threading.CancellationToken.None);
+            return LatestAsync(@base, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>Get the latest foreign exchange reference rates</summary>
-        /// <param name="@base">The base currency</param>
-        /// <param name="symbols">The exchange rates symbols returned</param>
-        /// <returns>The foreign exchange reference rates</returns>
+        /// <returns>Auto generated using Swagger Inspector</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<Rates> GetLatestAsync(string @base, System.Collections.Generic.IEnumerable<string> symbols, string AppId,System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Response> LatestAsync(string @base, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/latest?");
@@ -72,12 +66,6 @@ namespace CurrencyConverterClient
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("base") + "=").Append(System.Uri.EscapeDataString(ConvertToString(@base, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
-            if (symbols != null) 
-            {
-                foreach (var item_ in symbols) { urlBuilder_.Append(System.Uri.EscapeDataString("symbols") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
-            }
-            urlBuilder_.Append(System.Uri.EscapeDataString("access_key ") + "=").Append(System.Uri.EscapeDataString(ConvertToString(AppId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-
             urlBuilder_.Length--;
     
             var client_ = _httpClient;
@@ -110,100 +98,7 @@ namespace CurrencyConverterClient
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Rates>(response_, headers_).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-    
-        /// <summary>Get historical rates from a gived date</summary>
-        /// <param name="date">The given date</param>
-        /// <param name="@base">The base currency</param>
-        /// <param name="symbols">The exchange rates symbols returned</param>
-        /// <returns>The foreign exchange reference rates</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Rates> GetByDateAsync(System.DateTimeOffset date, string @base, System.Collections.Generic.IEnumerable<string> symbols)
-        {
-            return GetByDateAsync(date, @base, symbols, System.Threading.CancellationToken.None);
-        }
-    
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>Get historical rates from a gived date</summary>
-        /// <param name="date">The given date</param>
-        /// <param name="@base">The base currency</param>
-        /// <param name="symbols">The exchange rates symbols returned</param>
-        /// <returns>The foreign exchange reference rates</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<Rates> GetByDateAsync(System.DateTimeOffset date, string @base, System.Collections.Generic.IEnumerable<string> symbols, System.Threading.CancellationToken cancellationToken)
-        {
-            if (date == null)
-                throw new System.ArgumentNullException("date");
-    
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/{date}?");
-            urlBuilder_.Replace("{date}", System.Uri.EscapeDataString(date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture)));
-            if (@base != null) 
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("base") + "=").Append(System.Uri.EscapeDataString(ConvertToString(@base, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (symbols != null) 
-            {
-                foreach (var item_ in symbols) { urlBuilder_.Append(System.Uri.EscapeDataString("symbols") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
-            }
-            urlBuilder_.Length--;
-    
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-    
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
-    
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-    
-                        ProcessResponse(client_, response_);
-    
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Rates>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -334,16 +229,139 @@ namespace CurrencyConverterClient
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.3.1.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Rates 
+    public partial class Response 
     {
-        [Newtonsoft.Json.JsonProperty("base", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Base { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Date { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("rates", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.IDictionary<string, double> Rates1 { get; set; }
+        [Newtonsoft.Json.JsonProperty("rates", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Rates Rates { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("base", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Base { get; set; }
+    
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+    
+        [Newtonsoft.Json.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.3.1.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class Rates 
+    {
+        [Newtonsoft.Json.JsonProperty("HRK", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double HRK { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("CHF", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double CHF { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("MXN", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double MXN { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("ZAR", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double ZAR { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("INR", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double INR { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("THB", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double THB { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("CNY", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double CNY { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("AUD", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double AUD { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("ILS", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double ILS { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("KRW", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double KRW { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("JPY", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double JPY { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("PLN", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double PLN { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("GBP", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double GBP { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("IDR", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double IDR { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("HUF", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double HUF { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("PHP", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double PHP { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("TRY", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double TRY { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("RUB", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double RUB { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("HKD", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double HKD { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("ISK", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double ISK { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("EUR", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double EUR { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("DKK", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double DKK { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("CAD", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double CAD { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("MYR", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double MYR { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("USD", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double USD { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("BGN", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double BGN { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("NOK", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double NOK { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("RON", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double RON { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("SGD", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double SGD { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("CZK", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double CZK { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("SEK", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double SEK { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("NZD", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double NZD { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("BRL", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double BRL { get; set; }
+    
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+    
+        [Newtonsoft.Json.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
     
     
     }
