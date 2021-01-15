@@ -13,6 +13,7 @@
     <RootNamespace>Weather.Test</RootNamespace>
     <AssemblyName>Weather.Test</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -124,17 +125,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiClients\ClientInterface.cs" />
-    <Compile Include="ApiClients\CurrenyConverterClient.cs" />
+    <Compile Include="ApiClients\CurrencyConverter.cs" />
     <Compile Include="ApiClients\OpenWeatherApiClient.cs" />
-    <Compile Include="Models\CurrencyConstants.cs" />
+    <Compile Include="Models\CurrencyEnum.cs" />
     <Compile Include="Models\CurrencyConversionResponse.cs" />
     <Compile Include="Models\WeatherResponseModel.cs" />
     <Compile Include="Steps\TestSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApiClients\CurrenyConverter.nswag" />
     <None Include="App.config" />
-    <None Include="ApiClients\CurrencyConverter.nswag" />
     <None Include="ApiClients\OpenWeatherApi.nswag" />
     <None Include="Features\Test.feature" />
     <None Include="packages.config" />
