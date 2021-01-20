@@ -149,11 +149,11 @@ namespace Weather.Test.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "9.9312")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.2673")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "27")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "25")]
         public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_Cochin()
         {
 #line 7
-  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Cochin", "www.google.com", "9.9312", "76.2673", "27", ((string[])(null)));
+  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Cochin", "www.google.com", "9.9312", "76.2673", "25", ((string[])(null)));
 #line hidden
         }
         
@@ -165,11 +165,11 @@ namespace Weather.Test.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "10.8505")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.2711")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "27")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "25")]
         public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_Kerala()
         {
 #line 7
-  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Kerala", "www.google.com", "10.8505", "76.2711", "27", ((string[])(null)));
+  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Kerala", "www.google.com", "10.8505", "76.2711", "25", ((string[])(null)));
 #line hidden
         }
         
@@ -181,11 +181,11 @@ namespace Weather.Test.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "51.5074")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "0.1278")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "7")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "5")]
         public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_London()
         {
 #line 7
-  this.UserSeesCurrentTemperatureForLocationOfHisChoice("London", "www.google.com", "51.5074", "0.1278", "7", ((string[])(null)));
+  this.UserSeesCurrentTemperatureForLocationOfHisChoice("London", "www.google.com", "51.5074", "0.1278", "5", ((string[])(null)));
 #line hidden
         }
     }

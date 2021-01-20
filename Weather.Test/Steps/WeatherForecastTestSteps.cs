@@ -1,5 +1,6 @@
 ﻿using Bdd.Project.Test.ApiClients;
 using Bdd.Project.Test.Models;
+using FluentAssertions;
 using System;
 using TechTalk.SpecFlow;
 
@@ -12,7 +13,7 @@ namespace Weather.Test.Steps
         private string Location;
         private string Latitude;
         private string Longitude;
-        private int temperature;
+        private int currenttemperature;
 
         [Given(@"the google url (.*)")]
         public void GivenTheGoogleUrl(string baseurl)
@@ -36,14 +37,15 @@ namespace Weather.Test.Steps
         {
             this.Latitude = Latitude.ToString();
             this.Longitude = Longitude.ToString();
+            ClientInterface weatherApi = new ClientInterface();
+            WeatherResponseModel response = weatherApi.GetCurrentWeather(this.Latitude, this.Longitude);
+            this.currenttemperature = Convert.ToInt32(response.current.temp);
         }
 
         [Then(@"the current temperature shown as (.*)")]
         public void ThenTheCurrentTemperatureShownAs(int temperature)
         {
-            ClientInterface weatherApi = new ClientInterface();
-            WeatherResponseModel response = weatherApi.GetCurrentWeather(Latitude, Longitude);
-            this.temperature = Convert.ToInt32(response.current.temp);
+            this.currenttemperature.Should().BeGreaterThan(temperature);
         }
     }
 }

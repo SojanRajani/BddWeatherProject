@@ -12,6 +12,6 @@
     Then the current temperature shown as <Temperature>
     Examples:
      | Location | baseurl        | Latitude | Longitude | Temperature |
-     | Cochin   | www.google.com | 9.9312   | 76.2673   |    27       |
-     | Kerala   | www.google.com | 10.8505  | 76.2711   |    27       |
-     | London   | www.google.com | 51.5074  | 0.1278    |    7        |
+     | Cochin   | www.google.com | 9.9312   | 76.2673   |    25       |
+     | Kerala   | www.google.com | 10.8505  | 76.2711   |    25       |
+     | London   | www.google.com | 51.5074  | 0.1278    |    5       |
