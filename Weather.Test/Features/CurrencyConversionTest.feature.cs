@@ -91,10 +91,10 @@ namespace Weather.Test.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void UserSeesCurrentRatesAfterCurrencyConversionOfCurrenciesOfHisChoice(string baseCurrency, string toCurrency, string baseurl, string rates, string[] exampleTags)
+        public virtual void ConversionBetweenTwoCurrencies(string baseCurrency, string toCurrency, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "mytag"};
+                    "CheckExchangeRate"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -103,11 +103,9 @@ namespace Weather.Test.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("baseCurrency", baseCurrency);
             argumentsOfScenario.Add("toCurrency", toCurrency);
-            argumentsOfScenario.Add("baseurl", baseurl);
-            argumentsOfScenario.Add("rates", rates);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User sees current rates after currency conversion of currencies of his choice", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Conversion between two currencies", null, tagsOfScenario, argumentsOfScenario);
 #line 5
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -127,69 +125,60 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given(string.Format("the google url {0}", baseurl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("Call Google home URL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
-    testRunner.When(string.Format("I enter search string as : {0} to {1} current rates", baseCurrency, toCurrency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 8
-    testRunner.Given("Currency converter Api Endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Then(string.Format("Enter search box text: Convert {0} to {1}", baseCurrency, toCurrency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
-    testRunner.Then(string.Format("the current rates shown as {0}", rates), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then(string.Format("I call Currency Convertor with {0} and {1}", baseCurrency, toCurrency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
+    testRunner.Then("the conversion rate should be equal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees current rates after currency conversion of currencies of his choice: IN" +
-            "R")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Conversion between two currencies: INR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CurrencyConversionTest")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CheckExchangeRate")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "INR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseCurrency", "INR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:toCurrency", "USD")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rates", "0.01")]
-        public virtual void UserSeesCurrentRatesAfterCurrencyConversionOfCurrenciesOfHisChoice_INR()
+        public virtual void ConversionBetweenTwoCurrencies_INR()
         {
 #line 5
-this.UserSeesCurrentRatesAfterCurrencyConversionOfCurrenciesOfHisChoice("INR", "USD", "www.google.com", "0.01", ((string[])(null)));
+    this.ConversionBetweenTwoCurrencies("INR", "USD", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees current rates after currency conversion of currencies of his choice: EU" +
-            "R")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Conversion between two currencies: EUR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CurrencyConversionTest")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CheckExchangeRate")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "EUR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseCurrency", "EUR")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:toCurrency", "INR")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rates", "88.37")]
-        public virtual void UserSeesCurrentRatesAfterCurrencyConversionOfCurrenciesOfHisChoice_EUR()
+        public virtual void ConversionBetweenTwoCurrencies_EUR()
         {
 #line 5
-this.UserSeesCurrentRatesAfterCurrencyConversionOfCurrenciesOfHisChoice("EUR", "INR", "www.google.com", "88.37", ((string[])(null)));
+    this.ConversionBetweenTwoCurrencies("EUR", "INR", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees current rates after currency conversion of currencies of his choice: AU" +
-            "D")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Conversion between two currencies: AUD")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CurrencyConversionTest")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("CheckExchangeRate")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "AUD")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseCurrency", "AUD")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:toCurrency", "PLN")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rates", "2.89")]
-        public virtual void UserSeesCurrentRatesAfterCurrencyConversionOfCurrenciesOfHisChoice_AUD()
+        public virtual void ConversionBetweenTwoCurrencies_AUD()
         {
 #line 5
-this.UserSeesCurrentRatesAfterCurrencyConversionOfCurrenciesOfHisChoice("AUD", "PLN", "www.google.com", "2.89", ((string[])(null)));
+    this.ConversionBetweenTwoCurrencies("AUD", "PLN", ((string[])(null)));
 #line hidden
         }
     }

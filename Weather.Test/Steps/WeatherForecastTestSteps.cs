@@ -65,6 +65,8 @@ namespace Weather.Test.Steps
             searchButton.Click();
             //Get the google temperature
             GoogleTemp = int.Parse(webDriver.FindElement(By.Id("wob_tm")).Text);
+            webDriver.Close();
+            webDriver.Quit();
         }
 
         [Given(@"I call Open weather api with Latitude (.*) and Longitude (.*)")]
