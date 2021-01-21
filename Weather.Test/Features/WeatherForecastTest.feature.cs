@@ -92,15 +92,13 @@ namespace Weather.Test.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice(string location, string baseurl, string latitude, string longitude, string temperature, string[] exampleTags)
+        public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice(string location, string latitude, string longitude, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Location", location);
-            argumentsOfScenario.Add("baseurl", baseurl);
             argumentsOfScenario.Add("Latitude", latitude);
             argumentsOfScenario.Add("Longitude", longitude);
-            argumentsOfScenario.Add("Temperature", temperature);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User sees current temperature for location of his choice", null, tagsOfScenario, argumentsOfScenario);
 #line 7
   this.ScenarioInitialize(scenarioInfo);
@@ -123,19 +121,16 @@ namespace Weather.Test.Features
             {
                 this.ScenarioStart();
 #line 8
-    testRunner.Given(string.Format("the google url {0}", baseurl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("I Call the google home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
     testRunner.When(string.Format("I enter search string as : Current temperature of Location {0}", location), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
-    testRunner.Given("Open Weather Api Endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 11
-    testRunner.When(string.Format("I give Latitude {0} and Longitude {1}", latitude, longitude), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Given(string.Format("I call Open weather api with Latitude {0} and Longitude {1}", latitude, longitude), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
-    testRunner.Then(string.Format("the current temperature shown as {0}", temperature), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the current temperatures should be equal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -146,46 +141,40 @@ namespace Weather.Test.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecastTest")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Cochin")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "Cochin")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "9.9312")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.2673")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "25")]
         public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_Cochin()
         {
 #line 7
-  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Cochin", "www.google.com", "9.9312", "76.2673", "25", ((string[])(null)));
+  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Cochin", "9.9312", "76.2673", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees current temperature for location of his choice: Kerala")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees current temperature for location of his choice: Trivandrum")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecastTest")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Kerala")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "Kerala")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "10.8505")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.2711")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "25")]
-        public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_Kerala()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Trivandrum")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "Trivandrum")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "8.5241")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.9366")]
+        public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_Trivandrum()
         {
 #line 7
-  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Kerala", "www.google.com", "10.8505", "76.2711", "25", ((string[])(null)));
+  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Trivandrum", "8.5241", "76.9366", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees current temperature for location of his choice: London")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees current temperature for location of his choice: Alappuzha")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecastTest")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "London")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "London")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseurl", "www.google.com")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "51.5074")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "0.1278")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Temperature", "5")]
-        public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_London()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Alappuzha")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "Alappuzha")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "9.4981")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.3388")]
+        public virtual void UserSeesCurrentTemperatureForLocationOfHisChoice_Alappuzha()
         {
 #line 7
-  this.UserSeesCurrentTemperatureForLocationOfHisChoice("London", "www.google.com", "51.5074", "0.1278", "5", ((string[])(null)));
+  this.UserSeesCurrentTemperatureForLocationOfHisChoice("Alappuzha", "9.4981", "76.3388", ((string[])(null)));
 #line hidden
         }
     }

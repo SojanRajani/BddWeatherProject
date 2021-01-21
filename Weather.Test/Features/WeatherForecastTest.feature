@@ -5,13 +5,13 @@
 
 
   Scenario Outline: User sees current temperature for location of his choice
-    Given the google url <baseurl>
+    Given I Call the google home page
     When I enter search string as : Current temperature of Location <Location>
-    Given Open Weather Api Endpoint
-    When I give Latitude <Latitude> and Longitude <Longitude> 
-    Then the current temperature shown as <Temperature>
+  
+    Given I call Open weather api with Latitude <Latitude> and Longitude <Longitude> 
+    Then the current temperatures should be equal
     Examples:
-     | Location | baseurl        | Latitude | Longitude | Temperature |
-     | Cochin   | www.google.com | 9.9312   | 76.2673   |    25       |
-     | Kerala   | www.google.com | 10.8505  | 76.2711   |    25       |
-     | London   | www.google.com | 51.5074  | 0.1278    |    5       |
+     | Location     | Latitude | Longitude |
+     | Cochin       | 9.9312   | 76.2673   |
+     | Trivandrum   | 8.5241   | 76.9366   |
+     | Alappuzha     | 9.4981   | 76.3388   |

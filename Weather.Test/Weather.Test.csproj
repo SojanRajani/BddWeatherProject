@@ -127,12 +127,10 @@
     <Compile Include="ApiClients\ClientInterface.cs" />
     <Compile Include="ApiClients\CurrencyConverter.cs" />
     <Compile Include="ApiClients\OpenWeatherApiClient.cs" />
-    <Compile Include="Features\Test.feature.cs" />
     <Compile Include="Features\WeatherForecastTest.feature.cs" />
     <Compile Include="Models\CurrencyEnum.cs" />
     <Compile Include="Models\CurrencyConversionResponse.cs" />
     <Compile Include="Models\WeatherResponseModel.cs" />
-    <Compile Include="Steps\TestSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\WeatherForecastTestSteps.cs" />
   </ItemGroup>
@@ -140,7 +138,6 @@
     <None Include="ApiClients\CurrenyConverter.nswag" />
     <None Include="App.config" />
     <None Include="ApiClients\OpenWeatherApi.nswag" />
-    <None Include="Features\Test.feature" />
     <None Include="Features\WeatherForecastTest.feature" />
     <None Include="packages.config" />
   </ItemGroup>
