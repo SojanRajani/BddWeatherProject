@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Bdd.WeatherProject/v16/TestStore/0/001.testlog
+.vs
+/packages
+/Weather.Test/bin
+/Weather.Test/obj
