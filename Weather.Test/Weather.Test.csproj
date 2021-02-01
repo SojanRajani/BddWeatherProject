@@ -123,6 +123,7 @@
     <Compile Include="ApiClients\ClientInterface.cs" />
     <Compile Include="ApiClients\CurrencyConverter.cs" />
     <Compile Include="ApiClients\OpenWeatherApiClient.cs" />
+    <Compile Include="ApiClients\OpenWeatherApiClient_V3.cs" />
     <Compile Include="Features\CurrencyConversionTest.feature.cs" />
     <Compile Include="Features\WeatherForecastTest.feature.cs" />
     <Compile Include="Models\CurrencyEnum.cs" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ApiClients\CurrenyConverter.nswag" />
+    <None Include="ApiClients\OpenWeatherApiClientNswag.nswag" />
     <None Include="App.config" />
     <None Include="ApiClients\OpenWeatherApi.nswag" />
     <None Include="Features\CurrencyConversionTest.feature" />

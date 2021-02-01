@@ -14,7 +14,7 @@ namespace Bdd.Project.Test.Models
         public int timezone_offset { get; set; }
         public Current current { get; set; }
     }
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+
     public class Weather
     {
         public int id { get; set; }
@@ -25,6 +25,7 @@ namespace Bdd.Project.Test.Models
 
     public class Current
     {
+        public DateTime time { get; set; }
         public int dt { get; set; }
         public int sunrise { get; set; }
         public int sunset { get; set; }

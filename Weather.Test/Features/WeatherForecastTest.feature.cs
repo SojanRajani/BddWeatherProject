@@ -177,6 +177,96 @@ namespace Weather.Test.Features
   this.UserSeesCurrentTemperatureForLocationOfHisChoice("Alappuzha", "9.4981", "76.3388", ((string[])(null)));
 #line hidden
         }
+        
+        public virtual void UserSeesHourlyTemperatureForLocationOfHisChoice(string location, string latitude, string longitude, string time, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Location", location);
+            argumentsOfScenario.Add("Latitude", latitude);
+            argumentsOfScenario.Add("Longitude", longitude);
+            argumentsOfScenario.Add("Time", time);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User sees hourly temperature for location of his choice", null, tagsOfScenario, argumentsOfScenario);
+#line 20
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 21
+    testRunner.Given("I Call the google home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+    testRunner.When(string.Format("I enter search as : Current temperature of Location {0} at Date Time {1}", location, time), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 24
+    testRunner.Given(string.Format("I call hourly Open weather api with Latitude {0} and Longitude {1}", latitude, longitude), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 25
+    testRunner.Then("the current temperatures should be equal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees hourly temperature for location of his choice: Cochin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecastTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Cochin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "Cochin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "9.9312")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.2673")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Time", "31/01/2021 5:00:00 AM")]
+        public virtual void UserSeesHourlyTemperatureForLocationOfHisChoice_Cochin()
+        {
+#line 20
+  this.UserSeesHourlyTemperatureForLocationOfHisChoice("Cochin", "9.9312", "76.2673", "31/01/2021 5:00:00 AM", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees hourly temperature for location of his choice: Trivandrum")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecastTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Trivandrum")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "Trivandrum")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "8.5241")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.9366")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Time", "31/01/2021 6:00:00 PM")]
+        public virtual void UserSeesHourlyTemperatureForLocationOfHisChoice_Trivandrum()
+        {
+#line 20
+  this.UserSeesHourlyTemperatureForLocationOfHisChoice("Trivandrum", "8.5241", "76.9366", "31/01/2021 6:00:00 PM", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("User sees hourly temperature for location of his choice: Alappuzha")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecastTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Alappuzha")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Location", "Alappuzha")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Latitude", "9.4981")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Longitude", "76.3388")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Time", "31/01/2021 7:00:00 PM")]
+        public virtual void UserSeesHourlyTemperatureForLocationOfHisChoice_Alappuzha()
+        {
+#line 20
+  this.UserSeesHourlyTemperatureForLocationOfHisChoice("Alappuzha", "9.4981", "76.3388", "31/01/2021 7:00:00 PM", ((string[])(null)));
+#line hidden
+        }
     }
 }
 #pragma warning restore

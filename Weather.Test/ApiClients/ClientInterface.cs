@@ -4,6 +4,7 @@ using OpenWeatherApi;
 using System.Configuration;
 using CurrencyConverter;
 using System;
+using System.Collections.Generic;
 
 namespace Bdd.Project.Test.ApiClients
 {
@@ -13,20 +14,42 @@ namespace Bdd.Project.Test.ApiClients
         public static CurrencyConversionResponse currency;
 
         private static string AppId = ConfigurationManager.AppSettings["ApiAppId"];
-        private static string CurrencyAppId = ConfigurationManager.AppSettings["CurrencyApiAppId"];
 
         public WeatherResponseModel GetCurrentWeather(string lat, string lon)
         {
-            Client client = new Client(new HttpClient());
-            var response = client.CurrentWeatherDataAsync(q: "", id: "", lat: lat, lon: lon, zip: "", units: Units.Metric, lang: Lang.En, mode: Mode.Json, AppId: AppId).Result;
+            OpenWeatherApiClient client = new OpenWeatherApiClient(new HttpClient());
+
+            var response = client.WeatherAsync(lat: lat, lon: lon, units: "metric", appid: AppId).Result;
             weather = new WeatherResponseModel()
             {
                 current = new Current()
                 {
-                    temp = response.Main.Temp
+                    temp = (double)response.Main.Temp
                 }
             };
             return weather;
+        }
+
+        public List<WeatherResponseModel> GetHourlyWeather(string lat, string lon)
+        {
+            List<WeatherResponseModel> weatherList = new List<WeatherResponseModel>();
+            OpenWeatherApiClient client = new OpenWeatherApiClient(new HttpClient());
+            var response = client.OnecallAsync(lat: lat, lon: lon, units: "metric", appid: AppId, exclude: "minutely,alerts,current,daily").Result;
+            foreach (var item in response.Hourly)
+            {
+                weatherList.Add(
+                    new WeatherResponseModel()
+                    {
+                        current = new Current()
+                        {
+                            temp = item.Temp.Value,
+                            time = ToDateTime(item.Dt.Value)
+                        }
+                    }
+                ) ;
+            }
+
+            return weatherList;
         }
 
         public CurrencyConversionResponse GetCurrencyCoverted(string baseCurrency, string toCurrency)
@@ -79,6 +102,12 @@ namespace Bdd.Project.Test.ApiClients
             };
 
             return currency;
+        }
+
+        private static DateTime ToDateTime(double unixTime)
+        {
+            var returnDate = new DateTime(1970, 1, 1).Add(TimeSpan.FromSeconds(unixTime));
+            return returnDate;
         }
 
         static readonly Func<string, CurrencyEnum> MapEnum = (string currency) => (CurrencyEnum)Enum.Parse(typeof(CurrencyEnum), currency);
